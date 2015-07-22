@@ -83,6 +83,6 @@ public class MainActivity extends Activity {
         if (!buttonText.contains("app")){
             buttonText += " app";
         }
-        return getString(R.string.launch_text) + buttonText + "!";
+        return getString(R.string.launchText) + buttonText + "!";
     }
 }
