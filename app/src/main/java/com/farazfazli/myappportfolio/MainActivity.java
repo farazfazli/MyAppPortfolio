@@ -24,48 +24,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mSpotifyStreamer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mSpotifyStreamer.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
-        mScoresApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mScoresApp.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
-        mLibraryApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mLibraryApp.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
-        mBuildItBigger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mBuildItBigger.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
-        mXYZReader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mXYZReader.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
-        mCapstone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String appName = mCapstone.getText().toString();
-                showAppToast(formatAppName(appName));
-            }
-        });
+        mSpotifyStreamer.setOnClickListener(new ButtonClickListener(mSpotifyStreamer));
+        mScoresApp.setOnClickListener(new ButtonClickListener(mScoresApp));
+        mLibraryApp.setOnClickListener(new ButtonClickListener(mLibraryApp));
+        mBuildItBigger.setOnClickListener(new ButtonClickListener(mBuildItBigger));
+        mXYZReader.setOnClickListener(new ButtonClickListener(mXYZReader));
+        mCapstone.setOnClickListener(new ButtonClickListener(mCapstone));
     }
 
     private void showAppToast(String appName) {
@@ -84,5 +48,24 @@ public class MainActivity extends Activity {
             buttonText += " app";
         }
         return getString(R.string.launchText) + buttonText + "!";
+    }
+
+    // Thanks Christopher Rucinski for helping me improve my reuse of code.
+    private class ButtonClickListener implements View.OnClickListener {
+
+        Button button;
+
+        ButtonClickListener(Button button) {
+            this.button = button;
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            String appName = button.getText().toString();
+            showAppToast(formatAppName(appName));
+
+        }
+
     }
 }
